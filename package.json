@@ -11,7 +11,8 @@
     "clean": "tsc --build --clean",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "docs": "rm -rf ./docs && typedoc ./src"
   },
   "repository": {
     "type": "git",
@@ -41,6 +42,7 @@
     "mocha": "^9.1.1",
     "ts-node": "^10.2.1",
     "ts-node-dev": "^1.1.8",
+    "typedoc": "^0.21.9",
     "typescript": "^4.4.2"
   }
 }

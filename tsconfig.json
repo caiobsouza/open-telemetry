@@ -99,6 +99,7 @@
   },
   "exclude": [
     "./node_modules",
-    "./commitlint.config.js"
+    "./commitlint.config.js",
+    "./dist"
   ]
 }
