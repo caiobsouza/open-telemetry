@@ -4,6 +4,9 @@
 
 import { PacketHeader } from '../common/PacketHeader.types';
 
+/**
+ * It details various values that would be recorded on the car such as speed, throttle application, DRS etc.
+ */
 export interface CarTelemetry {
   /**
    * Speed of car in kilometres per hour
