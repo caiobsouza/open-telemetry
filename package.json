@@ -1,0 +1,44 @@
+{
+  "name": "open-telemetry",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "ts-node ./src/index.ts",
+    "start:dev": "ts-node-dev ./src/index.ts",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caiobsouza/open-telemetry.git"
+  },
+  "keywords": [
+    "F1",
+    "2020",
+    "Telemetry",
+    "JavaScript"
+  ],
+  "author": "Caio Souza",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/caiobsouza/open-telemetry/issues"
+  },
+  "homepage": "https://github.com/caiobsouza/open-telemetry#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@types/node": "^16.7.10",
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
+    "chai": "^4.3.4",
+    "eslint": "^7.32.0",
+    "husky": "^7.0.2",
+    "mocha": "^9.1.1",
+    "ts-node": "^10.2.1",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.2"
+  }
+}
