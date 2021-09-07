@@ -1,8 +1,11 @@
 import { IParserBuilder } from '../../common/builder/IParserBuilder';
 import { BaseParser } from '../../common/parser/BaseParser';
+import { ICarTelemetry } from '../interfaces/ICarTelemetry';
 
-export class CarTelemetryBuilder implements IParserBuilder {
-  private parser: BaseParser;
+type Parser = BaseParser<ICarTelemetry>;
+
+export class CarTelemetryParserBuilder implements IParserBuilder {
+  private parser: Parser;
 
   constructor() {
     this.parser = new BaseParser;
@@ -13,7 +16,7 @@ export class CarTelemetryBuilder implements IParserBuilder {
     return this;
   }
 
-  withThrottle2018(): this {
+  withThrottleLegacy(): this {
     this.parser.uint8('m_throttle');
     return this;
   }
@@ -90,7 +93,7 @@ export class CarTelemetryBuilder implements IParserBuilder {
     return this;
   }
 
-  withTyres16le(): this {
+  withTyresLegacy(): this {
     this.parser
       .array('m_tyresSurfaceTemperature', {
         length: 4,
@@ -121,7 +124,7 @@ export class CarTelemetryBuilder implements IParserBuilder {
     return this;
   }
 
-  build(): BaseParser {
+  build(): Parser {
     return this.parser;
   }
 }

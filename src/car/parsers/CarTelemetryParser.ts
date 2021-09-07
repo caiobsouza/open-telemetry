@@ -1,11 +1,11 @@
 import { BaseParser } from '../../common/parser/BaseParser';
 import { IParserCollection } from '../../common/parser/IParserColletion';
-import { CarTelemetryBuilder } from '../builders/CarTelemetryBuilder';
+import { CarTelemetryParserBuilder } from '../builders/CarTelemetryParserBuilder';
+import { ICarTelemetry } from '../interfaces/ICarTelemetry';
 
-export class CarTelemetryParsers implements IParserCollection {
-  2020(): BaseParser {
-    const builder = new CarTelemetryBuilder;
-    return builder
+export class CarTelemetryParsers implements IParserCollection<ICarTelemetry> {
+  2020(): BaseParser<ICarTelemetry> {
+    return new CarTelemetryParserBuilder()
       .withSpeed()
       .withThrottle()
       .withSteer()
