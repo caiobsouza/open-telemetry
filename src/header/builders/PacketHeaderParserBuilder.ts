@@ -8,10 +8,11 @@ export class PacketHeaderParserBuilder implements IParserBuilder {
 
   constructor() {
     this.parser = new BaseParser;
+    this.parser.endianess('little');
   }
 
   withPacketFormat(): this {
-    this.parser.uint8('m_packetFormat');
+    this.parser.uint16le('m_packetFormat');
     return this;
   }
 
@@ -35,13 +36,18 @@ export class PacketHeaderParserBuilder implements IParserBuilder {
     return this;
   }
 
-  withSessionUID(): this {
-    this.parser.uint64('m_sessionUID');
+  withSessionUID(bigintEnabled: boolean): this {
+    if (bigintEnabled) {
+      this.parser.uint64('m_sessionUID');
+    } else {
+      this.parser.skip(8);
+    }
+
     return this;
   }
 
   withSessionTime(): this {
-    this.parser.floatbe('m_sessionTime');
+    this.parser.floatle('m_sessionTime');
     return this;
   }
 
@@ -52,6 +58,11 @@ export class PacketHeaderParserBuilder implements IParserBuilder {
 
   withPlayerCarIndex(): this {
     this.parser.uint8('m_playerCarIndex');
+    return this;
+  }
+
+  withSecondaryPlayerCarIndex(): this {
+    this.parser.uint8('m_secondaryPlayerCarIndex');
     return this;
   }
 

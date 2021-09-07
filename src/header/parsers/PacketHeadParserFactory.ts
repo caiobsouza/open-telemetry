@@ -1,9 +1,9 @@
 import { BaseParser } from '../../common/parser/BaseParser';
-import { IParserCollection } from '../../common/parser/IParserColletion';
+import { IParserFactory as IParserFactory } from '../../common/parser/IParserFactory';
 import { PacketHeaderParserBuilder } from '../builders/PacketHeaderParserBuilder';
 import { IPacketHeader } from '../interfaces/IPacketHeader';
 
-export class PacketHeaderParsers implements IParserCollection<IPacketHeader> {
+export class PacketHeaderParserFactory implements IParserFactory<IPacketHeader> {
   2020(): BaseParser<IPacketHeader> {
     return new PacketHeaderParserBuilder()
       .withPacketFormat()
@@ -11,10 +11,11 @@ export class PacketHeaderParsers implements IParserCollection<IPacketHeader> {
       .withMinorVersion()
       .withPacketVerion()
       .withPacketId()
-      .withSessionUID()
+      .withSessionUID(true)
       .withSessionTime()
       .withFrameIdentifier()
       .withPlayerCarIndex()
+      .withSecondaryPlayerCarIndex()
       .build();
   }
 }
