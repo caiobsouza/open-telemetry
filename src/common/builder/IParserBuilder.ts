@@ -1,5 +1,5 @@
 import { BaseParser } from '../parser/BaseParser';
 
 export interface IParserBuilder {
-  build(): BaseParser;
+  build(): BaseParser<any>;
 }

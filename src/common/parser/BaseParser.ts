@@ -1,11 +1,11 @@
 import { Parser } from 'binary-parser';
 
-export class BaseParser extends Parser {
+export class BaseParser<T> extends Parser {
   constructor() {
     super();
   }
 
-  fromBuffer(buffer: Buffer): any {
+  fromBuffer(buffer: Buffer) : T {
     return this.parse(buffer);
   }
 }
