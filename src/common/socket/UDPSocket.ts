@@ -38,4 +38,3 @@ export class UDPSocket {
     this.socket.on(eventType, callback);
   }
 }
-

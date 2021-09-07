@@ -2,12 +2,12 @@
  * @module CarTelemetry
  */
 
-import { PacketHeader } from '../common/PacketHeader.types';
+import { PacketHeader } from '../../common/types/PacketHeader.types';
 
 /**
  * It details various values that would be recorded on the car such as speed, throttle application, DRS etc.
  */
-export interface CarTelemetry {
+export interface ICarTelemetry {
   /**
    * Speed of car in kilometres per hour
    */
@@ -91,7 +91,7 @@ export enum DrsStatus {
  */
 export interface PacketCarTelemetryData {
   m_header: PacketHeader
-  m_carTelemetryData: CarTelemetry
+  m_carTelemetryData: ICarTelemetry
   /**
    * Suggested gear for the player (1-8). 0 if no gear suggested.
    */
