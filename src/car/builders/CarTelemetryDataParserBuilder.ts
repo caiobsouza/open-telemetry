@@ -4,11 +4,12 @@ import { ICarTelemetry } from '../interfaces/ICarTelemetry';
 
 type Parser = BaseParser<ICarTelemetry>;
 
-export class CarTelemetryParserBuilder implements IParserBuilder {
+export class CarTelemetryParserDataBuilder implements IParserBuilder {
   private parser: Parser;
 
   constructor() {
     this.parser = new BaseParser;
+    this.parser.endianess('little');
   }
 
   withSpeed(): this {
@@ -75,34 +76,28 @@ export class CarTelemetryParserBuilder implements IParserBuilder {
     return this;
   }
 
-  withTyres(): this {
+  withTyresSurfaceTemp(): this {
     this.parser
       .array('m_tyresSurfaceTemperature', {
         length: 4,
         type: new BaseParser().uint8(''),
-      })
-      .array('m_tyresInnerTemperature', {
-        length: 4,
-        type: new BaseParser().uint8(''),
-      })
-      .array('m_tyresPressure', {
-        length: 4,
-        type: new BaseParser().floatle(''),
       });
 
     return this;
   }
 
-  withTyresLegacy(): this {
+  withTyresInnerTemp(): this {
     this.parser
-      .array('m_tyresSurfaceTemperature', {
-        length: 4,
-        type: new BaseParser().uint16le(''),
-      })
       .array('m_tyresInnerTemperature', {
         length: 4,
-        type: new BaseParser().uint16le(''),
-      })
+        type: new BaseParser().uint8(''),
+      });
+
+    return this;
+  }
+
+  withTyresPressure(): this {
+    this.parser
       .array('m_tyresPressure', {
         length: 4,
         type: new BaseParser().floatle(''),

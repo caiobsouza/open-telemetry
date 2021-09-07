@@ -1,11 +1,12 @@
 import { BaseParser } from '../../common/parser/BaseParser';
-import { IParserCollection } from '../../common/parser/IParserColletion';
-import { CarTelemetryParserBuilder } from '../builders/CarTelemetryParserBuilder';
+import { IParserFactory } from '../../common/parser/IParserFactory';
+import { CarTelemetryParserDataBuilder } from '../builders/CarTelemetryDataParserBuilder';
+import { CarTelemetryPacketParserBuilder } from '../builders/CarTelemetryPacketParserBuilder';
 import { ICarTelemetry } from '../interfaces/ICarTelemetry';
 
-export class CarTelemetryParsers implements IParserCollection<ICarTelemetry> {
+export class CarTelemetryFactory implements IParserFactory<ICarTelemetry> {
   2020(): BaseParser<ICarTelemetry> {
-    return new CarTelemetryParserBuilder()
+    const dataParser = new CarTelemetryParserDataBuilder()
       .withSpeed()
       .withThrottle()
       .withSteer()
@@ -15,11 +16,22 @@ export class CarTelemetryParsers implements IParserCollection<ICarTelemetry> {
       .withEngineRPM()
       .withDRS()
       .withRevLightsPercent()
-      .withRevLightsBitValue()
       .withBrakesTemperature()
-      .withTyres()
+      .withTyresSurfaceTemp()
+      .withTyresInnerTemp()
       .withEngineTemperature()
+      .withTyresPressure()
       .withSurfaceType()
       .build();
+
+    return new CarTelemetryPacketParserBuilder()
+      .withHeader()
+      .withData('m_carTelemetryData', 22, dataParser)
+      .withButtonStatus()
+      .withMFDPanelIndex()
+      .withMFDPanelIndexSecondaryPlayer()
+      .withSuggestedGear()
+      .build();
   }
+
 }
